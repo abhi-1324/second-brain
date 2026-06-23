@@ -97,6 +97,9 @@ function App() {
         </div>
       ))}
     </div>
+    <div className="footer">
+        Built by <span> Goldenbuoy</span> 🖤
+    </div>
   </div>
 );
 }
