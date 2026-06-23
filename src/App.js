@@ -11,7 +11,7 @@ function App() {
   }, []);
 
   async function fetchTasks() {
-    const response = await fetch("http://localhost:3001/tasks");
+    const response = await fetch("/tasks");
     const data = await response.json();
     setTasks(data);
   }
@@ -19,7 +19,7 @@ function App() {
   async function addTask() {
     if (!input) return;
     setLoading(true);
-    await fetch("http://localhost:3001/tasks", {
+    await fetch("https://second-brain-vuqg.onrender.com/tasks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: input, completed: false })
@@ -30,14 +30,14 @@ function App() {
   }
 
   async function deleteTask(id) {
-    await fetch(`http://localhost:3001/tasks/${id}`, {
+    await fetch(`https://second-brain-vuqg.onrender.com/tasks/${id}`, {
       method: "DELETE"
     });
     fetchTasks();
   }
 
   async function toggleTask(id, completed) {
-    await fetch(`http://localhost:3001/tasks/${id}`, {
+    await fetch(`https://second-brain-vuqg.onrender.com/tasks/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ completed: !completed })
@@ -51,7 +51,7 @@ function App() {
   
   const taskList = tasks.map(t => t.text).join("\n");
   
-  const response = await fetch("http://localhost:3001/analyze", {
+  const response = await fetch("https://second-brain-vuqg.onrender.com/analyze", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ tasks: taskList })
