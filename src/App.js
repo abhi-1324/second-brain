@@ -10,7 +10,7 @@ function App() {
   }, []);
 
   async function fetchTasks() {
-    const response = await fetch("/tasks");
+    const response = await fetch("https://second-brain-vuqg.onrender.com/tasks");
     const data = await response.json();
     setTasks(data);
   }
