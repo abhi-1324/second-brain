@@ -4,7 +4,6 @@ import './App.css';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchTasks();
@@ -18,7 +17,7 @@ function App() {
 
   async function addTask() {
     if (!input) return;
-    setLoading(true);
+    
     await fetch("https://second-brain-vuqg.onrender.com/tasks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -26,7 +25,7 @@ function App() {
     });
     setInput("");
     fetchTasks();
-    setLoading(false);
+    
   }
 
   async function deleteTask(id) {
@@ -47,7 +46,7 @@ function App() {
 
   async function analyzeWithAI() {
   if (tasks.length === 0) return;
-  setLoading(true);
+ 
   
   const taskList = tasks.map(t => t.text).join("\n");
   
@@ -59,7 +58,7 @@ function App() {
   
   const data = await response.json();
   alert(data.result);
-  setLoading(false);
+  
 }
 
   return (
